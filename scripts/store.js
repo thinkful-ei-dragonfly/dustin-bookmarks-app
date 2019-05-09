@@ -2,12 +2,13 @@
 
 const store = (function() {
 
-function addBookmark(title, rating, desc, url) {
+  function addBookmark(title, rating, desc, url) {
     let bookmark = {
       title, 
       desc,
       rating, 
       url,
+      fullView: false,
     };
 
     this.bookmarks.push(bookmark);
