@@ -2,20 +2,19 @@
 
 const store = (function() {
 
-  function addBookmark(title, rating, desc, url) {
-    let bookmark = {
-      title, 
-      desc,
-      rating, 
-      url,
-      fullView: false,
-    };
-
+  function addBookmark(bookmark) {
+    // let bookmark = {
+    //   title, 
+    //   desc,
+    //   rating, 
+    //   url,
+    //   fullView: false,
+    // };
     this.bookmarks.push(bookmark);
   }
 
-  function addNew() {
-    this.addingNew = true;
+  function toggleAddNew() {
+    this.addingNew = !this.addingNew;
   }
 
   function changeRatingFilter(rating) {
@@ -33,7 +32,7 @@ const store = (function() {
     error: null,
 
     addBookmark,
-    addNew,
+    toggleAddNew,
     changeRatingFilter,
     updateError,
   };
