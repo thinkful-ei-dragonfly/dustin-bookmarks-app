@@ -2,14 +2,11 @@
 
 const store = (function() {
 
+  const findAndDelete = function(id) {
+    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
+  };
+
   function addBookmark(bookmark) {
-    // let bookmark = {
-    //   title, 
-    //   desc,
-    //   rating, 
-    //   url,
-    //   fullView: false,
-    // };
     this.bookmarks.push(bookmark);
   }
 
@@ -35,5 +32,6 @@ const store = (function() {
     toggleAddNew,
     changeRatingFilter,
     updateError,
+    findAndDelete,
   };
 })();

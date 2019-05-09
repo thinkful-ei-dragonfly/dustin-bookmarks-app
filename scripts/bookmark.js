@@ -3,7 +3,34 @@
 
 //this file is for all my event listeners as well as my render function
 
+//NEED TO ADD THE ABILITY TO EXPAND THE LIST WITHIN THE FUNCTION 
+//AND INTEGRATE THE API CALLS INTO MY ADD ITEM
+//ALSO NEED TO WORK ON GETTING THE ID FROM EACH ELEMENT ON A DELETE CLICK AND ADDING A DELETE BUTTON
+
+
 const bookmark = (function() {
+
+  function generateBookmarkElement(newBookmark){
+
+    let expandedInfo= '';
+
+    if(newBookmark.fullView){
+      expandedInfo = `<li>Description: ${newBookmark.desc}</li>
+                      <li>url: ${newBookmark.url}</li>`;
+    }
+
+    return `<li class ='bookmark-display'>
+      <ul>
+        <li>Title: ${newBookmark.title}</li>
+        <li>Rating: ${newBookmark.rating}</li>
+        ${expandedInfo}
+      </ul>
+    </li>`;
+  }
+
+  function generateBookmarkElementsString(bookmarkArray){
+    return bookmarkArray.map(book => generateBookmarkElement(book)).join('');
+  }
 
   function handleOpenAddForm() {
     $('#js-add-button').click(function(e){
@@ -26,14 +53,13 @@ const bookmark = (function() {
       e.preventDefault();
 
       const title = $('#js-title-input').val();
-      console.log(title);
       const url = $('#js-url-input').val();
-      const description = $('#js-description-input').val();
+      const desc = $('#js-description-input').val();
       const rating = $('#js-rating-input').val();
 
       const bookmark = {
         title,
-        description,
+        desc,
         url,
         rating,
         fullView: false,
@@ -53,9 +79,15 @@ const bookmark = (function() {
     if(store.addingNew) {
       $('#js-add-new-bookmark').removeClass('hidden');
     }
-    if(!store.addingNew){
+    else {
       $('#js-add-new-bookmark').addClass('hidden');
     }
+
+    let bookmarks = [...store.bookmarks]; 
+
+    const html = generateBookmarkElementsString(bookmarks);
+
+    $('#js-bookmark-list').html(html);
 
 
   }
@@ -66,16 +98,9 @@ const bookmark = (function() {
     handleAddBookmarkCancel();
   }
 
-
-
-
-
-
-
-
   return{
     bindEventListeners,
     render,
-  }
+  };
 
 })();

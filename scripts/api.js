@@ -9,7 +9,8 @@ const api = (function(){
       .then(res => res.json);
   }
   
-  function createBookmark(newBookmark) {
+  function createBookmark(bookmark) {
+    const newBookmark = JSON.stringify(bookmark);
     const options ={
       method: 'POST',
       headers: new Headers({'Content-Type': 'application/json'}),
