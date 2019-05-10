@@ -23,8 +23,8 @@ const bookmark = (function() {
       return `<li class ='bookmark-display'>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
         <div class = "flex">
-          <div class = 'bookmark-title inline-block'><span>${newBookmark.title}</span></div>
-          <div class = 'bookmark-rating inline-block'><span>${newBookmark.rating} Star</span></div>
+          <div class = 'bookmark-title inline-block'><h3 class = 'bookmark-title-name'>${newBookmark.title}</h3></div>
+          <div class = 'bookmark-rating inline-block'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
         ${expandedInfo}
       </div>
@@ -40,8 +40,8 @@ const bookmark = (function() {
       <div class ='inline-block'>${expandButton}</div>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
       <div class = "flex">
-          <div class = 'bookmark-title inline-block'><span>${newBookmark.title}</span></div>
-          <div class = 'bookmark-rating inline-block'><span>${newBookmark.rating} Stars</span></div>
+          <div class = 'bookmark-title inline-block'><h3 class = 'bookmark-title-name'>${newBookmark.title}</h3></div>
+          <div class = 'bookmark-rating inline-block'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
         ${expandedInfo}
       </div>
