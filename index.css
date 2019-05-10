@@ -8,11 +8,39 @@
 
 .js-bookmark {
   border: 1px solid gray;
+  border-radius: 3px;
   display: inline-block; 
   width: 80%;
+  margin: 5px;
 }
 
 .bookmark-buttons {
   display: inline-block;
 }
+
+.js-expand-button {
+  display: block;
+}
+
+/* div {
+  border: 1px red solid;
+} */
+
+.bookmark-title {
+  display: inline-block;
+}
+
+.bookmark-rating {
+  display: inline-block;
+  
+}
+
+
+
+ .bookmark-desc, .bookmark-desc-title {
+  text-align: center;
+}  
+
+
+
 

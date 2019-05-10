@@ -13,23 +13,27 @@ const bookmark = (function() {
 
     let expandedInfo= '';
     let visitSite = '';
+    let expandButton = '<button class="js-expand-button">See Details</button>';
 
     if(newBookmark.fullView){
-      expandedInfo = `<div class = 'bookmark-desc'><span>Description: ${newBookmark.desc}</span></div>`
+      expandedInfo = `<div class = 'bookmark-desc-title'><span class ="desc-span">Description</span></div>
+                        <div class ='bookmark-desc'>${newBookmark.desc}</div>`;
                       
       visitSite = `<div class ='bookmark-url'><form action= ${newBookmark.url}>
                       <input type="submit" value="Visit Site"/>
                       </form></div>`;
+      expandButton = '<button class="js-expand-button">Hide Details</button>';
     }
 
     return `<li class ='bookmark-display'>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
         <div class = 'bookmark-title'><span>Title: ${newBookmark.title}</span></div>
-        <div class = 'bookmark-rating'><span>Rating: ${newBookmark.rating}</span></div>
+        <div class = 'bookmark-rating'><span>Rating: ${newBookmark.rating} Stars</span></div>
         ${expandedInfo}
       </div>
       <div class = 'bookmark-buttons'>
       ${visitSite}
+      ${expandButton}
       <button class='js-delete-button'>Delete</button>
       </div>
     </li>`;
@@ -55,6 +59,7 @@ const bookmark = (function() {
     });
   }
 
+  //delete function is working in store and through api
   function handleDeleteBookmark() {
     $('#js-bookmark-list').on('click', '.js-delete-button',e =>{
       const id = $(e.currentTarget).closest('.bookmark-display').find('.js-bookmark').attr('data-book-id');
@@ -100,8 +105,8 @@ const bookmark = (function() {
   }
 
   function handleExpandBookmark() {
-    $('#js-bookmark-list').on('click', '.js-bookmark', e => {
-      const id = $(e.currentTarget).attr('data-book-id');
+    $('#js-bookmark-list').on('click', '.js-expand-button', e => {
+      const id = $(e.currentTarget).closest('.bookmark-display').find('.js-bookmark').attr('data-book-id');
       store.toggleBookmarkFullView(id);
       render();
     });
@@ -119,9 +124,11 @@ const bookmark = (function() {
   function render() {
     if(store.addingNew) {
       $('#js-add-new-bookmark').removeClass('hidden');
+      $('#js-add-filter-form').addClass('hidden');
     }
     else {
       $('#js-add-new-bookmark').addClass('hidden');
+      $('#js-add-filter-form').removeClass('hidden');
     }
 
     let bookmarks = [...store.bookmarks]; 
