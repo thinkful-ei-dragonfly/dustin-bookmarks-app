@@ -20,7 +20,7 @@ const bookmark = (function() {
     }
 
     return `<li class ='bookmark-display'>
-      <ul>
+      <ul class = js-bookmark data-book-id = ${newBookmark.id}>
         <li>Title: ${newBookmark.title}</li>
         <li>Rating: ${newBookmark.rating}</li>
         ${expandedInfo}
@@ -68,7 +68,14 @@ const bookmark = (function() {
       store.toggleAddNew();
       store.addBookmark(bookmark);
       render();
+    });
+  }
 
+  function handleExpandBookmark() {
+    $('#js-bookmark-list').on('click', '.js-bookmark', e => {
+      const id = $(e.currentTarget).attr('data-book-id');
+      store.toggleBookmarkFullView(id);
+      render();
     });
   }
   
@@ -88,14 +95,13 @@ const bookmark = (function() {
     const html = generateBookmarkElementsString(bookmarks);
 
     $('#js-bookmark-list').html(html);
-
-
   }
 
   function bindEventListeners() {
     handleOpenAddForm();
     handleAddBookmarkSubmit();
     handleAddBookmarkCancel();
+    handleExpandBookmark();
   }
 
   return{
