@@ -6,8 +6,7 @@ const api = (function(){
 
   //This works properly
   function getBookmarks(){
-    return fetch(BASE_URL)
-      .then(res => res.json());
+    return fetch(BASE_URL);
   }
   
   //this works correctly
@@ -18,8 +17,8 @@ const api = (function(){
       headers: new Headers({'Content-Type': 'application/json'}),
       body: newBookmark,
     };
-    return fetch(BASE_URL, options)
-      .then(res => res.json());
+    return fetch(BASE_URL, options);
+      //.then(res => res.json());
   }
 
   //This Works correctly

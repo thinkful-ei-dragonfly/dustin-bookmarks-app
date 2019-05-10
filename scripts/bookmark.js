@@ -63,10 +63,24 @@ const bookmark = (function() {
   function handleDeleteBookmark() {
     $('#js-bookmark-list').on('click', '.js-delete-button',e =>{
       const id = $(e.currentTarget).closest('.bookmark-display').find('.js-bookmark').attr('data-book-id');
-      console.log(id);
+      let error = '';
       api.deleteBookmark(id)
-        .then(() => {
+        .then(res => {
+          if(!res.ok){
+            error = {code: res.status};
+          }
+          return res.json();
+        })
+        .then(res => {
+          if(error){
+            error.message = res.message;
+            return Promise.reject(error);
+          }
           store.findAndDelete(id);
+          render();
+        })
+        .catch(e=>{
+          store.updateError(e.message);
           render();
         });
     });
@@ -92,11 +106,24 @@ const bookmark = (function() {
         url,
         rating,
       };
-
+      let error = '';
       api.createBookmark(bookmark)
-        //.then(res => res.json())
         .then(res => {
+          if(!res.ok){
+            error = {code: res.status};
+          }
+          return res.json();
+        })
+        .then(res => {
+          if(error){
+            error.message = res.message;
+            return Promise.reject(error);
+          }
           store.addBookmark(res);
+          render();
+        })
+        .catch(e => {
+          store.updateError(e.message);
           render();
         });
 
