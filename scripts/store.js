@@ -2,9 +2,13 @@
 
 const store = (function() {
 
-  const findAndDelete = function(id) {
-    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
-  };
+  function findBookmarkById(id) {
+    return store.bookmarks.find(book => book.id === id);
+  }
+
+  function findAndDelete(id) {
+    this.bookmarks = this.bookmarks.filter(book => book.id !== id);
+  }
 
   function addBookmark(bookmark) {
     this.bookmarks.push(bookmark);
@@ -22,6 +26,11 @@ const store = (function() {
     this.error = error;
   }
 
+  function toggleBookmarkFullView(id) {
+    let book = findBookmarkById(id);
+    book.fullView = !book.fullView;
+  }
+
   return {
     bookmarks: [],
     addingNew: false,
@@ -33,5 +42,7 @@ const store = (function() {
     changeRatingFilter,
     updateError,
     findAndDelete,
+    toggleBookmarkFullView,
+    findBookmarkById,
   };
 })();
