@@ -6,16 +6,24 @@
   list-style: none;
 }
 
+.flex {
+  display: inline-flex;
+  width:100%;
+  justify-content: space-between;
+}
+
 .js-bookmark {
   border: 1px solid gray;
   border-radius: 3px;
-  display: inline-block; 
+  display: inline-block;
   width: 80%;
   margin: 5px;
+  vertical-align: middle;
 }
 
 .bookmark-buttons {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .js-expand-button {
@@ -26,18 +34,20 @@
   border: 1px red solid;
 } */
 
-.bookmark-title {
+
+.inline-block {
   display: inline-block;
+  margin: 2px;
 }
 
-.bookmark-rating {
-  display: inline-block;
+.bookmark-title, .bookmark-rating {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-
-
- .bookmark-desc, .bookmark-desc-title {
+ .bookmark-desc {
   text-align: center;
+  margin-top: 10px;
 }  
 
 

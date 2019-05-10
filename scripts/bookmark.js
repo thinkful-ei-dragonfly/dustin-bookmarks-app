@@ -3,9 +3,6 @@
 
 //this file is for all my event listeners as well as my render function
 
-//AND INTEGRATE THE API CALLS INTO MY (POST) ADD ITEM AND (GET) RENDER.
-//ALSO NEED TO WORK ON GETTING THE ID FROM EACH ELEMENT ON A DELETE CLICK AND ADDING A DELETE BUTTON
-
 
 const bookmark = (function() {
 
@@ -16,24 +13,40 @@ const bookmark = (function() {
     let expandButton = '<button class="js-expand-button">See Details</button>';
 
     if(newBookmark.fullView){
-      expandedInfo = `<div class = 'bookmark-desc-title'><span class ="desc-span">Description</span></div>
-                        <div class ='bookmark-desc'>${newBookmark.desc}</div>`;
+      expandedInfo = `<div class ='bookmark-desc'><span>${newBookmark.desc}</span></div>`;
+                        
                       
-      visitSite = `<div class ='bookmark-url'><form action= ${newBookmark.url}>
-                      <input type="submit" value="Visit Site"/>
-                      </form></div>`;
+      visitSite = `<div class ='bookmark-url'>
+                      <button value="Visit Site" class='js-visit-site'>Visit Site</button>
+                      </div>`;
       expandButton = '<button class="js-expand-button">Hide Details</button>';
-    }
-
-    return `<li class ='bookmark-display'>
+      return `<li class ='bookmark-display'>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
-        <div class = 'bookmark-title'><span>Title: ${newBookmark.title}</span></div>
-        <div class = 'bookmark-rating'><span>Rating: ${newBookmark.rating} Stars</span></div>
+        <div class = "flex">
+          <div class = 'bookmark-title inline-block'><span>${newBookmark.title}</span></div>
+          <div class = 'bookmark-rating inline-block'><span>${newBookmark.rating} Star</span></div>
+        </div>
         ${expandedInfo}
       </div>
       <div class = 'bookmark-buttons'>
       ${visitSite}
       ${expandButton}
+      <button class='js-delete-button'>Delete</button>
+      </div>
+    </li>`;
+    }
+
+    return `<li class ='bookmark-display'>
+      <div class ='inline-block'>${expandButton}</div>
+      <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
+      <div class = "flex">
+          <div class = 'bookmark-title inline-block'><span>${newBookmark.title}</span></div>
+          <div class = 'bookmark-rating inline-block'><span>${newBookmark.rating} Stars</span></div>
+        </div>
+        ${expandedInfo}
+      </div>
+      <div class = 'bookmark-buttons'>
+      ${visitSite}
       <button class='js-delete-button'>Delete</button>
       </div>
     </li>`;
@@ -139,11 +152,29 @@ const bookmark = (function() {
     });
   }
   
+  function handleVisitSite(){
+    $('#js-bookmark-list').on('click', '.js-visit-site', e => {
+      console.log('site loading');
+      const id = $(e.currentTarget).closest('.bookmark-display').find('.js-bookmark').attr('data-book-id');
+      const bookmark = store.findBookmarkById(id);
+      const url = bookmark.url;
+      window.location = url;    
+    });
+  }
+  
 
   function handleFiltering() {
     $('#js-rating-filter').change(e => {
       const rating = $(e.currentTarget).val();
       store.changeRatingFilter(rating);
+      render();
+    });
+  }
+
+  function handleDismissError() {
+    $('#js-error-cancel').click((e)=>{
+      e.preventDefault();
+      store.updateError(null);
       render();
     });
   }
@@ -156,6 +187,16 @@ const bookmark = (function() {
     else {
       $('#js-add-new-bookmark').addClass('hidden');
       $('#js-add-filter-form').removeClass('hidden');
+    }
+
+    if(store.error){
+      $('#js-error').removeClass('hidden');
+      $('#js-add-filter-form').addClass('hidden');
+      $('#error-message').html(store.error);
+    }
+    else{
+      $('#js-error').addClass('hidden');
+      //$('#js-add-filter-form').removeClass('hidden');
     }
 
     let bookmarks = [...store.bookmarks]; 
@@ -176,6 +217,8 @@ const bookmark = (function() {
     handleExpandBookmark();
     handleFiltering();
     handleDeleteBookmark();
+    handleDismissError();
+    handleVisitSite();
   }
 
 
