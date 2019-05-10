@@ -5,8 +5,8 @@ const api = (function(){
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/dustin/bookmarks';
 
   function getBookmarks(){
-    return fetch(BASE_URL)
-      .then(res => res.json);
+    return fetch(BASE_URL);
+    ;//.then(res => res.json);
   }
   
   function createBookmark(bookmark) {

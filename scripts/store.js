@@ -11,6 +11,7 @@ const store = (function() {
   }
 
   function addBookmark(bookmark) {
+    bookmark.fullView = false;
     this.bookmarks.push(bookmark);
   }
 

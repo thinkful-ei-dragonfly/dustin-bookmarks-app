@@ -3,10 +3,9 @@
 
 //this file is for all my event listeners as well as my render function
 
-//NEED TO ADD THE ABILITY TO EXPAND THE LIST WITHIN THE FUNCTION 
 //AND INTEGRATE THE API CALLS INTO MY (POST) ADD ITEM AND (GET) RENDER.
 //ALSO NEED TO WORK ON GETTING THE ID FROM EACH ELEMENT ON A DELETE CLICK AND ADDING A DELETE BUTTON
-//NEED TO GET INTO THE FILTER FUNCTIONALITY ON THE DOM WITH RENDER.
+
 
 const bookmark = (function() {
 
@@ -48,26 +47,36 @@ const bookmark = (function() {
     });
   }
 
+  //This is adding to the api and the store now
   function handleAddBookmarkSubmit() {
     $('#js-add-new-bookmark').submit(e => {
       e.preventDefault();
 
       const title = $('#js-title-input').val();
+      $('#js-title-input').val('');
       const url = $('#js-url-input').val();
+      $('#js-url-input').val('');
       const desc = $('#js-description-input').val();
+      $('#js-description-input').val('');
       const rating = $('#js-rating-input').val();
+      $('#js-rating-input').val('');
 
       const bookmark = {
         title,
         desc,
         url,
         rating,
-        fullView: false,
       };
 
       store.toggleAddNew();
-      store.addBookmark(bookmark);
-      render();
+      api.createBookmark(bookmark)
+        .then(res => res.json())
+        .then(res => {
+          store.addBookmark(res);
+          render();
+        });
+      
+      
     });
   }
 
@@ -80,7 +89,14 @@ const bookmark = (function() {
   }
   
 
-
+  function handleFiltering() {
+    $('#js-rating-filter').change(e => {
+      console.log(e.currentTarget);
+      const rating = $(e.currentTarget).val();
+      store.changeRatingFilter(rating);
+      render();
+    });
+  }
 
   function render() {
     if(store.addingNew) {
@@ -92,16 +108,21 @@ const bookmark = (function() {
 
     let bookmarks = [...store.bookmarks]; 
 
-    const html = generateBookmarkElementsString(bookmarks);
+    const filteredList = bookmarks.filter(book => book.rating >= store.ratingFilter);
+
+    const html = generateBookmarkElementsString(filteredList);
 
     $('#js-bookmark-list').html(html);
   }
+
+  
 
   function bindEventListeners() {
     handleOpenAddForm();
     handleAddBookmarkSubmit();
     handleAddBookmarkCancel();
     handleExpandBookmark();
+    handleFiltering();
   }
 
   return{
