@@ -4,11 +4,13 @@
 const api = (function(){
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/dustin/bookmarks';
 
+  //This works properly
   function getBookmarks(){
-    return fetch(BASE_URL);
-    ;//.then(res => res.json);
+    return fetch(BASE_URL)
+      .then(res => res.json());
   }
   
+  //this works correctly
   function createBookmark(bookmark) {
     const newBookmark = JSON.stringify(bookmark);
     const options ={
@@ -16,14 +18,16 @@ const api = (function(){
       headers: new Headers({'Content-Type': 'application/json'}),
       body: newBookmark,
     };
-    return fetch(BASE_URL, options);
+    return fetch(BASE_URL, options)
+      .then(res => res.json());
   }
 
+  //This Works correctly
   function deleteBookmark(id) {
     const options = {
       method: 'DELETE'
     };
-    fetch(`${BASE_URL}/${id}`, options);
+    return fetch(`${BASE_URL}/${id}`, options);
   }
 
   return {

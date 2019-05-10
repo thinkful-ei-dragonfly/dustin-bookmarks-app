@@ -1,4 +1,4 @@
-/*global $, store*/
+/*global $, store, api*/
 'use strict';
 
 //this file is for all my event listeners as well as my render function
@@ -12,18 +12,26 @@ const bookmark = (function() {
   function generateBookmarkElement(newBookmark){
 
     let expandedInfo= '';
+    let visitSite = '';
 
     if(newBookmark.fullView){
-      expandedInfo = `<li>Description: ${newBookmark.desc}</li>
-                      <li>url: ${newBookmark.url}</li>`;
+      expandedInfo = `<div class = 'bookmark-desc'><span>Description: ${newBookmark.desc}</span></div>`
+                      
+      visitSite = `<div class ='bookmark-url'><form action= ${newBookmark.url}>
+                      <input type="submit" value="Visit Site"/>
+                      </form></div>`;
     }
 
     return `<li class ='bookmark-display'>
-      <ul class = js-bookmark data-book-id = ${newBookmark.id}>
-        <li>Title: ${newBookmark.title}</li>
-        <li>Rating: ${newBookmark.rating}</li>
+      <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
+        <div class = 'bookmark-title'><span>Title: ${newBookmark.title}</span></div>
+        <div class = 'bookmark-rating'><span>Rating: ${newBookmark.rating}</span></div>
         ${expandedInfo}
-      </ul>
+      </div>
+      <div class = 'bookmark-buttons'>
+      ${visitSite}
+      <button class='js-delete-button'>Delete</button>
+      </div>
     </li>`;
   }
 
@@ -44,6 +52,18 @@ const bookmark = (function() {
       e.preventDefault();
       store.toggleAddNew();
       render();
+    });
+  }
+
+  function handleDeleteBookmark() {
+    $('#js-bookmark-list').on('click', '.js-delete-button',e =>{
+      const id = $(e.currentTarget).closest('.bookmark-display').find('.js-bookmark').attr('data-book-id');
+      console.log(id);
+      api.deleteBookmark(id)
+        .then(() => {
+          store.findAndDelete(id);
+          render();
+        });
     });
   }
 
@@ -68,15 +88,14 @@ const bookmark = (function() {
         rating,
       };
 
-      store.toggleAddNew();
       api.createBookmark(bookmark)
-        .then(res => res.json())
+        //.then(res => res.json())
         .then(res => {
           store.addBookmark(res);
           render();
         });
-      
-      
+
+      store.toggleAddNew();
     });
   }
 
@@ -91,7 +110,6 @@ const bookmark = (function() {
 
   function handleFiltering() {
     $('#js-rating-filter').change(e => {
-      console.log(e.currentTarget);
       const rating = $(e.currentTarget).val();
       store.changeRatingFilter(rating);
       render();
@@ -123,7 +141,9 @@ const bookmark = (function() {
     handleAddBookmarkCancel();
     handleExpandBookmark();
     handleFiltering();
+    handleDeleteBookmark();
   }
+
 
   return{
     bindEventListeners,

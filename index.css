@@ -1,3 +1,18 @@
 .hidden {
   display: none;
 }
+
+#js-bookmark-list {
+  list-style: none;
+}
+
+.js-bookmark {
+  border: 1px solid gray;
+  display: inline-block; 
+  width: 80%;
+}
+
+.bookmark-buttons {
+  display: inline-block;
+}
+
