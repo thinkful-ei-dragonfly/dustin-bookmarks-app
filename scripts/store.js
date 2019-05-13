@@ -3,7 +3,8 @@
 const store = (function() {
 
   function findBookmarkById(id) {
-    return store.bookmarks.find(book => book.id === id);
+    let bookmarks = this.bookmarks.find(book => book.id===id);  
+    return bookmarks;
   }
 
   function findAndDelete(id) {
