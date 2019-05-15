@@ -16,38 +16,39 @@ const bookmark = (function() {
       expandedInfo = `<div class ='bookmark-desc'><span>${newBookmark.desc}</span></div>`;
                         
                       
-      visitSite = `<div class ='bookmark-url'>
+      visitSite = `
                       <button value="Visit Site" class='js-visit-site'>Visit Site</button>
-                      </div>`;
+                      `;
       expandButton = '<button class="js-expand-button">Hide Details</button>';
+      
       return `<li class ='bookmark-display'>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
         <div class = "flex">
           <div class = 'bookmark-title inline-block'><h3 class = 'bookmark-title-name'>${newBookmark.title}</h3></div>
           <div class = 'bookmark-rating inline-block'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
+        <div id='bookmark-buttons'>${expandButton}
+          <button class='js-delete-button'>Delete</button>
+          ${visitSite}
+          </div>
         ${expandedInfo}
-      </div>
-      <div class = 'bookmark-buttons'>
-      ${visitSite}
-      ${expandButton}
-      <button class='js-delete-button'>Delete</button>
       </div>
     </li>`;
     }
 
     return `<li class ='bookmark-display'>
-      <div class ='inline-block'>${expandButton}</div>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
-      <div class = "flex">
-          <div class = 'bookmark-title inline-block'><h3 class = 'bookmark-title-name'>${newBookmark.title}</h3></div>
-          <div class = 'bookmark-rating inline-block'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
+      <div>
+        <div class ='flex'>
+          <div class = 'bookmark-title'><h3 class = 'bookmark-title-name'>${newBookmark.title}</h3></div>
+          <div class = 'bookmark-rating'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
-        ${expandedInfo}
-      </div>
-      <div class = 'bookmark-buttons'>
-      ${visitSite}
-      <button class='js-delete-button'>Delete</button>
+          <div id='bookmark-buttons'>${expandButton}
+          <button class='js-delete-button'>Delete</button>
+          ${visitSite}
+          </div>
+        </div>
+         ${expandedInfo}
       </div>
     </li>`;
   }

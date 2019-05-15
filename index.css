@@ -30,8 +30,13 @@
   vertical-align: middle;
 }
 
-.js-expand-button {
+/* .js-expand-button {
   display: block;
+} */
+
+ul{
+  text-align: center;
+  padding: 0 0 0 0;
 }
 
 
@@ -57,6 +62,8 @@ h2{
 .bookmark-title-name, .bookmark-rating-name {
   font-size: 20px;
   font-weight: bold;
+  display: inline-block;
+  margin: 2px;
 }
 
  .bookmark-desc {
@@ -64,8 +71,15 @@ h2{
   margin-top: 10px;
 }  
 
+#bookmark-buttons {
+  text-align: center;
+}
+
  
 /* Form Styling  */
+#js-add-filter-form {
+  text-align: center;
+}
 
 input {
   width: 80%;
