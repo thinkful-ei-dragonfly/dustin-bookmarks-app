@@ -8,27 +8,43 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <h1>Your Bookmark Closet</h1>
-  <div class = 'form-div'>
-  <form id='js-add-new-bookmark' class = 'hidden'>
+  <div id ='header-div'>
+    <h1>Your Bookmark Closet</h1>
+  </div>
+  
+  <div id='js-add-new-bookmark' class = 'hidden'>
+  <form>
     <h2 class ='form-title'>What would your like to bookmark?</h2>
-    <label for="title">Title: </label>
-    <input type="text" name ="title" id = "js-title-input">
-    <label for="url">URL: </label>
-    <input type="url" name = "url" id ="js-url-input">
-    <label for="description">Description: </label>
-    <input type="text" name="description" id="js-description-input">
-    <select name="rating-filter" id="js-rating-input">
+    <div class = 'form-right'>
+    <div class = 'user-input'>
+      <label for="title">Title: </label>
+      <input type="text" name ="title" id = "js-title-input">
+    </div>
+    <div class = 'user-input'>
+      <label for="url">URL: </label>
+      <input type="url" name = "url" id ="js-url-input" placeholder="http://example.com" value="http://">
+    </div>
+    <div class = 'user-input'>
+      <label for="description">Description: </label>
+      <input type="text" name="description" id="js-description-input">
+   </div>
+  </div>
+  <div class='form-center'>
+    <select name="rating-filter" id="js-rating-input" required>
         <option value="1">1 Star</option>
         <option value="2">2 star</option>
         <option value="3">3 star</option>
         <option value="4">4 star</option>
         <option value="5">5 star</option>
     </select>
+    <div id="form-buttons">
     <button type="submit">Submit</button>
     <button type="cancel" id="js-add-cancel">Cancel</button>
+    </div>
+    </div>
   </form>
-  </div>
+</div>
+  
   <div id = 'js-error' class ='hidden'><h3 id='error-message'></h3><button type= 'cancel' id='js-error-cancel'>Dismiss Error</button></div>
   <form id="js-add-filter-form">
     <button id = "js-add-button">Add New</button>

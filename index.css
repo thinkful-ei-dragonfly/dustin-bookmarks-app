@@ -21,11 +21,6 @@
   vertical-align: middle;
 }
 
-.form-div{
-  display: block;
-  text-align: center;
-}
-
 .bookmark-buttons {
   display: inline-block;
   vertical-align: middle;
@@ -35,10 +30,6 @@
   display: block;
 }
 
-/* #js-error{
-  display: flex;
-  width: 100%
-} */
 
 #error-message {
   font-weight: bolder;
@@ -53,7 +44,6 @@ h3 {
 h2{
   text-align: center;
 }
-
 
 .inline-block {
   display: inline-block;
@@ -70,6 +60,49 @@ h2{
   margin-top: 10px;
 }  
 
+ 
+/* Form Styling  */
 
+input {
+  width: 80%;
+}
 
+#js-add-new-bookmark {
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin:3% 3% 3% 3%;
+  background-color: azure;
+}
+
+.user-input {
+  margin-bottom: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#form-buttons {
+  margin-top: 10px;
+}
+
+.form-right{
+  display: block;
+  width:64%;
+  text-align: right;
+  margin-left: 15%;
+}
+
+.form-center{
+  text-align: center;
+}
+
+.form-title{
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+button {
+  margin-bottom: 5px;
+}
 
