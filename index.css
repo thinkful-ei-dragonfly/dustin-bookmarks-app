@@ -2,6 +2,10 @@
   display: none;
 }
 
+#header-div {
+  text-align:center;
+}
+
 #js-bookmark-list {
   list-style: none;
 }
@@ -71,7 +75,7 @@ input {
   border: 1px solid gray;
   border-radius: 8px;
   margin:3% 3% 3% 3%;
-  background-color: azure;
+  background-color: #39CCCC;
 }
 
 .user-input {
@@ -88,9 +92,9 @@ button:hover {
 
 .form-right{
   display: block;
-  width:64%;
+  width:74%;
   text-align: right;
-  margin-left: 15%;
+  margin-left: 10%;
 }
 
 .form-center{
