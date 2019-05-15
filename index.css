@@ -8,12 +8,16 @@
 
 #js-bookmark-list {
   list-style: none;
+  text-align: center;
+  padding: 0 0 0 0;
 }
 
 .flex {
   display: inline-flex;
   width:100%;
   justify-content: space-between;
+  margin-bottom: 5px;
+  border-bottom: 2px solid black;
 }
 
 .js-bookmark {
@@ -23,20 +27,13 @@
   width: 60%;
   margin: 5px;
   vertical-align: middle;
+  background-color:#485167;
+  color: white;
 }
 
 .bookmark-buttons {
   display: inline-block;
   vertical-align: middle;
-}
-
-/* .js-expand-button {
-  display: block;
-} */
-
-ul{
-  text-align: center;
-  padding: 0 0 0 0;
 }
 
 
@@ -50,7 +47,7 @@ h3 {
   margin-bottom: 0;
 }
 
-h2{
+h2 {
   text-align: center;
 }
 
@@ -68,11 +65,16 @@ h2{
 
  .bookmark-desc {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 5px;
 }  
+
+.desc{ 
+  margin-top: 8px;
+}
 
 #bookmark-buttons {
   text-align: center;
+  margin-top: 5px;
 }
 
  
@@ -88,8 +90,8 @@ input {
 #js-add-new-bookmark {
   border: 1px solid gray;
   border-radius: 8px;
-  margin:3% 3% 3% 3%;
-  background-color: #39CCCC;
+  margin:1% 3% 1% 3%;
+  background-color: #6F9FD8;
 }
 
 .user-input {
@@ -98,6 +100,7 @@ input {
 
 button:hover {
   cursor: pointer;
+  background-color: lightcyan;
 }
 
 #form-buttons {
@@ -122,5 +125,6 @@ button:hover {
 
 button {
   margin-bottom: 5px;
+ 
 }
 

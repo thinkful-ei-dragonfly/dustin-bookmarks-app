@@ -13,7 +13,7 @@ const bookmark = (function() {
     let expandButton = '<button class="js-expand-button">See Details</button>';
 
     if(newBookmark.fullView){
-      expandedInfo = `<div class ='bookmark-desc'><span>${newBookmark.desc}</span></div>`;
+      expandedInfo = `<section class ='bookmark-desc' role="region"><p class="desc">${newBookmark.desc}</p></section>`;
                         
                       
       visitSite = `

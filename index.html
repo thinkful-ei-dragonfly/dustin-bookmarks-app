@@ -9,13 +9,13 @@
 </head>
 <body>
   <div id ='header-div'>
-    <h1>Your Bookmark Closet</h1>
+    <header role="banner"><h1>Your Bookmark Closet</h1></header>
   </div>
   
-  <div id='js-add-new-bookmark' class = 'hidden'>
+  <section id='js-add-new-bookmark' class = 'hidden' role="region">
   <form>
     <h2 class ='form-title'>What would your like to bookmark?</h2>
-    <div class = 'form-right'>
+    <section class = 'form-right' role="region">
     <div class = 'user-input'>
       <label for="title">Title: </label>
       <input type="text" name ="title" id = "js-title-input">
@@ -28,7 +28,7 @@
       <label for="description">Description: </label>
       <input type="text" name="description" id="js-description-input">
    </div>
-  </div>
+  </section>
   <div class='form-center'>
     <select name="rating-filter" id="js-rating-input" required>
         <option value="1">1 Star</option>
@@ -43,7 +43,7 @@
     </div>
     </div>
   </form>
-</div>
+</section>
   
   <div id = 'js-error' class ='hidden'><h3 id='error-message'></h3><button type= 'cancel' id='js-error-cancel'>Dismiss Error</button></div>
   <form id="js-add-filter-form">
