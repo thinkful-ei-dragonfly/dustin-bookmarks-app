@@ -10,16 +10,16 @@ const bookmark = (function() {
 
     let expandedInfo= '';
     let visitSite = '';
-    let expandButton = '<button class="js-expand-button">See Details</button>';
+    let expandButton = '<button class="js-expand-button" type="button">See Details</button>';
 
     if(newBookmark.fullView){
       expandedInfo = `<section class ='bookmark-desc' role="region"><p class="desc">${newBookmark.desc}</p></section>`;
                         
                       
       visitSite = `
-                      <button value="Visit Site" class='js-visit-site'>Visit Site</button>
+                      <button value="Visit Site" class='js-visit-site' type="button">Visit Site</button>
                       `;
-      expandButton = '<button class="js-expand-button">Hide Details</button>';
+      expandButton = '<button class="js-expand-button" type="button">Hide Details</button>';
       
       return `<li class ='bookmark-display'>
       <div class = 'js-bookmark' data-book-id = ${newBookmark.id}>
@@ -28,7 +28,7 @@ const bookmark = (function() {
           <div class = 'bookmark-rating inline-block'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
         <div id='bookmark-buttons'>${expandButton}
-          <button class='js-delete-button'>Delete</button>
+          <button type="button" class='js-delete-button'>Delete</button>
           ${visitSite}
           </div>
         ${expandedInfo}
@@ -44,7 +44,7 @@ const bookmark = (function() {
           <div class = 'bookmark-rating'><h3 class = 'bookmark-rating-name'>${newBookmark.rating} Star</h3></div>
         </div>
           <div id='bookmark-buttons'>${expandButton}
-          <button class='js-delete-button'>Delete</button>
+          <button class='js-delete-button' type="button">Delete</button>
           ${visitSite}
           </div>
         </div>
