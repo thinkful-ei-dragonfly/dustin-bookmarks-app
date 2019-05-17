@@ -108,7 +108,7 @@ const bookmark = (function() {
       const title = $('#js-title-input').val();
       $('#js-title-input').val('');
       const url = $('#js-url-input').val();
-      $('#js-url-input').val('');
+      $('#js-url-input').val('http://');
       const desc = $('#js-description-input').val();
       $('#js-description-input').val('');
       const rating = $('#js-rating-input').val();
